@@ -16,7 +16,9 @@ CACHED_DOWNLOAD="${HOME}/cache/erlang-OTP-${ERLANG_VERSION}.tar.gz"
 mkdir -p "${ERLANG_PATH}"
 ERLANG_PATH=$(realpath "${ERLANG_PATH}")
 
-wget --continue --output-document "${CACHED_DOWNLOAD}" "https://s3.amazonaws.com/heroku-buildpack-elixir/erlang/cedar-14/OTP-${ERLANG_VERSION}.tar.gz"
+ERLANG_DOWNLOAD_URL="https://repo.hex.pm/builds/otp/ubuntu-22.04/OTP-${ERLANG_VERSION}.tar.gz"
+
+wget --continue --output-document "${CACHED_DOWNLOAD}" "${ERLANG_DOWNLOAD_URL}"
 tar -xaf "${CACHED_DOWNLOAD}" --strip-components=1 --directory "${ERLANG_PATH}"
 "${ERLANG_PATH}/Install" -minimal "${ERLANG_PATH}"
 
